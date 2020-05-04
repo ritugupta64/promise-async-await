@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Promise with asnc and await</h1>
+    <p> To consume promises we use async and await and if we want to produce promises then we use promise(then) as did earlier</p>
+   
+    <script>
+     function arrayId(){
+         return new Promise((resolve, reject) => {
+            const data = [1, 16,15, 12]
+            setTimeout(() => {
+            resolve(data);
+           }, 1000)
+         })
+     }
+
+     function arrayId2(argid){
+         return new Promise((resolve, reject) => {
+             setTimeout((id) => {
+                 const data1 = {
+                     name: 'test',
+                     companyid: '678'
+                 }
+                 resolve(`${id} ${data1.name}`)
+             }, 2000, argid)
+         })
+     }
+
+     function arrayId3(companyId){
+         return new Promise((resolve, reject) => {
+             setTimeout((id) => {
+                resolve(`${id} .....`)
+             }, 3000, companyId)
+         })
+     }
+
+    async function abc() {
+        const yn = await arrayId()
+        console.log(yn)
+        const yn1 = await arrayId2(yn[2])
+        console.log(yn1)
+        const yn2 = await arrayId3(yn1)
+        console.log(yn2)
+
+        return{
+            yn, yn1, yn2
+        }
+    }
+
+    abc().then((res) => console.log(res))
+    </script>
+</body>
+</html>
